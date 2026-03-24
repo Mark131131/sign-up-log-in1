@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hello World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Epic Parallax Background */
+        .parallax-wrapper {
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            perspective: 10px;
+        }
+
+        .parallax-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            z-index: -1;
+        }
+
+        .parallax-layer {
+            position: absolute;
+            width: 100%;
+            height: 120%;
+            object-fit: cover;
+            transform-style: preserve-3d;
+        }
+
+        .layer-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            transform: translateZ(-10px) scale(2);
+            animation: gradientMove 20s ease infinite;
+        }
+
+        .layer-1 {
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(255,255,255,0.15) 0%, transparent 40%);
+            transform: translateZ(-5px) scale(1.5);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .layer-2 {
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255,255,255,0.05) 50px, rgba(255,255,255,0.05) 100px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.05) 50px, rgba(255,255,255,0.05) 100px);
+            transform: translateZ(-2px) scale(1.2);
+            animation: rotate 60s linear infinite;
+        }
+
+        .layer-3 {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 87, 108, 0.4) 0%, transparent 50%);
+            transform: translateZ(0px) scale(1);
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+            50% { filter: hue-rotate(30deg) brightness(1.1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translateZ(-5px) scale(1.5); }
+            50% { opacity: 0.8; transform: translateZ(-5px) scale(1.6); }
+        }
+
+        @keyframes rotate {
+            from { transform: translateZ(-2px) scale(1.2) rotate(0deg); }
+            to { transform: translateZ(-2px) scale(1.2) rotate(360deg); }
+        }
+
+        /* Floating Elements */
+        .floater {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floater:nth-child(1) {
+            width: 100px; height: 100px;
+            top: 20%; left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floater:nth-child(2) {
+            width: 150px; height: 150px;
+            top: 60%; left: 80%;
+            animation-delay: 2s;
+        }
+
+        .floater:nth-child(3) {
+            width: 80px; height: 80px;
+            top: 40%; left: 85%;
+            animation-delay: 4s;
+        }
+
+        .floater:nth-child(4) {
+            width: 120px; height: 120px;
+            top: 70%; left: 15%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* Hello World Content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            transform: translateZ(0);
+            padding: 20px;
+        }
+
+        .hello-world {
+            font-size: 8rem;
+            font-weight: 900;
+            text-shadow: 
+                0 10px 30px rgba(0,0,0,0.3),
+                0 0 100px rgba(255,255,255,0.3);
+            animation: 
+                fadeInScale 1s ease-out,
+                glow 3s ease-in-out infinite alternate,
+                floatText 4s ease-in-out infinite;
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255,255,255,0.5)); }
+            to { filter: drop-shadow(0 0 60px rgba(255,255,255,0.8)); }
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.5s both;
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-logout {
+            padding: 10px 25px;
+            background: rgba(231, 76, 60, 0.8);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: rgba(231, 76, 60, 1);
+            transform: scale(1.05);
+        }
+
+        /* Content Section */
+        .content-section {
+            position: relative;
+            z-index: 10;
+            background: white;
+            padding: 100px 50px;
+            min-height: 50vh;
+            box-shadow: 0 -50px 100px rgba(0,0,0,0.2);
+        }
+
+        .content-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hello-world {
+                font-size: 4rem;
+            }
+            .nav-bar {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .content-section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <a href="#" class="logo">MyApp</a>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Parallax Hero Section -->
+    <div class="parallax-wrapper" id="parallax-wrapper">
+        <div class="parallax-container">
+            <div class="parallax-layer layer-bg"></div>
+            <div class="parallax-layer layer-1"></div>
+            <div class="parallax-layer layer-2"></div>
+            <div class="parallax-layer layer-3"></div>
+            
+            <div class="floater"></div>
+            <div class="floater"></div>
+            <div class="floater"></div>
+            <div class="floater"></div>
+
+            <div class="hero-content">
+                <h1 class="hello-world">Hello World</h1>
+                <p class="subtitle">Welcome to your dashboard</p>
+                <p class="user-info" id="user-display">Loading...</p>
+            </div>
+
+            <div class="scroll-indicator" onclick="scrollToContent()">⌄</div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section" id="content">
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>View your performance metrics and track your progress over time with detailed insights.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👤</div>
+                    <h3>Profile</h3>
+                    <p>Manage your account settings, update your information, and customize your preferences.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Settings</h3>
+                    <p>Configure your dashboard, notification preferences, and security settings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if logged in
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        
+        if (!currentUser) {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('user-display').textContent = 
+                `Logged in as ${currentUser.full_name} (${currentUser.email})`;
+        }
+
+        // Parallax scroll effect
+        const wrapper = document.getElementById('parallax-wrapper');
+        const layers = document.querySelectorAll('.parallax-layer');
+        
+        wrapper.addEventListener('scroll', () => {
+            const scrolled = wrapper.scrollTop;
+            
+            layers.forEach((layer, index) => {
+                const speed = (index + 1) * 0.5;
+                layer.style.transform = `translateY(${scrolled * speed}px) translateZ(${-10 + index * 3}px) scale(${2 - index * 0.3})`;
+            });
+        });
+
+        // Mouse move parallax
+        document.addEventListener('mousemove', (e) => {
+            const floaters = document.querySelectorAll('.floater');
+            const x = (window.innerWidth - e.pageX) / 50;
+            const y = (window.innerHeight - e.pageY) / 50;
+
+            floaters.forEach((floater, index) => {
+                const speed = (index + 1) * 2;
+                floater.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        function scrollToContent() {
+            document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Dynamic greeting based on time
+        const hour = new Date().getHours();
+        let greeting = 'Hello World';
+        if (hour < 12) greeting = 'Good Morning World';
+        else if (hour < 18) greeting = 'Good Afternoon World';
+        else greeting = 'Good Evening World';
+        
+        document.querySelector('.hello-world').textContent = greeting;
+    </script>
+</body>
+</html>
