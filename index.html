@@ -18,7 +18,7 @@
             position: relative;
         }
 
-        /* Parallax Background */
+        /* Blue & White Parallax Background */
         .parallax-container {
             position: fixed;
             top: 0;
@@ -27,6 +27,7 @@
             height: 100vh;
             overflow: hidden;
             z-index: -1;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #ffffff 100%);
         }
 
         .parallax-layer {
@@ -38,51 +39,16 @@
         }
 
         .layer-1 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            animation: gradientShift 15s ease infinite;
-        }
-
-        .layer-2 {
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
 
-        .layer-3 {
+        .layer-2 {
             background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.03) 35px, rgba(255,255,255,0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px);
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.1) 35px, rgba(255,255,255,0.1) 70px);
             animation: slide 30s linear infinite;
-        }
-
-        /* Floating Particles */
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: floatUp linear infinite;
-        }
-
-        .particle:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 15s; animation-delay: 0s; }
-        .particle:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 20s; animation-delay: 2s; }
-        .particle:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 18s; animation-delay: 4s; }
-        .particle:nth-child(4) { width: 25px; height: 25px; left: 50%; animation-duration: 22s; animation-delay: 1s; }
-        .particle:nth-child(5) { width: 35px; height: 35px; left: 65%; animation-duration: 16s; animation-delay: 3s; }
-        .particle:nth-child(6) { width: 15px; height: 15px; left: 75%; animation-duration: 25s; animation-delay: 5s; }
-        .particle:nth-child(7) { width: 45px; height: 45px; left: 85%; animation-duration: 19s; animation-delay: 2s; }
-        .particle:nth-child(8) { width: 30px; height: 30px; left: 5%; animation-duration: 21s; animation-delay: 6s; }
-
-        @keyframes gradientShift {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(30deg); }
         }
 
         @keyframes float {
@@ -96,24 +62,37 @@
             100% { transform: translate(70px, 70px); }
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) scale(1.5);
-                opacity: 0;
-            }
+        /* Floating Particles - White */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
-        /* Login Container */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+        }
+
+        .particle:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 15s; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 20s; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 18s; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 25px; height: 25px; left: 50%; animation-duration: 22s; animation-delay: 1s; }
+        .particle:nth-child(5) { width: 35px; height: 35px; left: 65%; animation-duration: 16s; animation-delay: 3s; }
+        .particle:nth-child(6) { width: 15px; height: 15px; left: 75%; animation-duration: 25s; animation-delay: 5s; }
+        .particle:nth-child(7) { width: 45px; height: 45px; left: 85%; animation-duration: 19s; animation-delay: 2s; }
+        .particle:nth-child(8) { width: 30px; height: 30px; left: 5%; animation-duration: 21s; animation-delay: 6s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+
         .login-wrapper {
             min-height: 100vh;
             display: flex;
@@ -123,46 +102,19 @@
         }
 
         .login-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
             padding: 50px 40px;
             width: 100%;
             max-width: 420px;
             box-shadow: 
                 0 25px 50px -12px rgba(0, 0, 0, 0.25),
-                0 0 100px rgba(255, 255, 255, 0.1);
-            animation: slideUp 0.8s ease-out, glow 3s ease-in-out infinite alternate;
+                0 0 100px rgba(30, 60, 114, 0.2);
+            animation: slideUp 0.8s ease-out;
             position: relative;
             overflow: hidden;
-        }
-
-        .login-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.1) 50%,
-                transparent 70%
-            );
-            animation: shimmer 3s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 50px rgba(102, 126, 234, 0.3); }
-            to { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 100px rgba(118, 75, 162, 0.5); }
         }
 
         @keyframes slideUp {
@@ -173,20 +125,17 @@
         .login-header {
             text-align: center;
             margin-bottom: 35px;
-            position: relative;
-            z-index: 1;
         }
 
         .login-header h2 {
-            color: white;
+            color: #1e3c72;
             font-size: 2.5rem;
             margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             animation: fadeInDown 0.8s ease-out 0.2s both;
         }
 
         .login-header p {
-            color: rgba(255, 255, 255, 0.8);
+            color: #2a5298;
             font-size: 1rem;
             animation: fadeInDown 0.8s ease-out 0.4s both;
         }
@@ -212,11 +161,10 @@
 
         .form-group label {
             display: block;
-            color: rgba(255, 255, 255, 0.9);
+            color: #1e3c72;
             margin-bottom: 8px;
             font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
         .input-wrapper {
@@ -226,26 +174,24 @@
         .form-group input {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid #e0e0e0;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
+            background: #f8f9fa;
+            color: #1e3c72;
             font-size: 1rem;
             transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.6);
-            background: rgba(255, 255, 255, 0.15);
+            border-color: #2a5298;
+            background: white;
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(42, 82, 152, 0.15);
         }
 
         .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+            color: #95a5a6;
         }
 
         .input-icon {
@@ -253,20 +199,14 @@
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
+            color: #2a5298;
             font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus + .input-icon {
-            color: rgba(255, 255, 255, 0.9);
-            transform: translateY(-50%) scale(1.1);
         }
 
         .btn-login {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             border: none;
             border-radius: 15px;
             color: white;
@@ -274,12 +214,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.4);
             margin-top: 10px;
+            animation: fadeInUp 0.6s ease-out 0.9s both;
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 0.6s ease-out 0.9s both;
-            z-index: 1;
         }
 
         @keyframes fadeInUp {
@@ -304,11 +243,7 @@
 
         .btn-login:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-login:active {
-            transform: translateY(-1px);
+            box-shadow: 0 15px 40px rgba(30, 60, 114, 0.6);
         }
 
         .alert {
@@ -327,15 +262,15 @@
         }
 
         .alert-danger {
-            background: rgba(231, 76, 60, 0.25);
-            border: 1px solid rgba(231, 76, 60, 0.4);
-            color: #ffebee;
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            color: #c0392b;
         }
 
         .alert-success {
-            background: rgba(46, 204, 113, 0.25);
-            border: 1px solid rgba(46, 204, 113, 0.4);
-            color: #e8f8f5;
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            color: #27ae60;
         }
 
         @keyframes shake {
@@ -352,38 +287,23 @@
         .signup-link {
             text-align: center;
             margin-top: 25px;
-            color: rgba(255, 255, 255, 0.8);
+            color: #2a5298;
             font-size: 0.95rem;
             animation: fadeIn 0.6s ease-out 1.1s both;
-            position: relative;
-            z-index: 1;
         }
 
         .signup-link a {
-            color: white;
+            color: #1e3c72;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
-            position: relative;
         }
 
-        .signup-link a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
+        .signup-link a:hover {
+            border-bottom-color: #1e3c72;
         }
 
-        .signup-link a:hover::after {
-            width: 100%;
-        }
-
-        /* Loading Spinner */
         .spinner {
             display: none;
             width: 20px;
@@ -408,7 +328,6 @@
             display: none;
         }
 
-        /* Responsive */
         @media (max-width: 480px) {
             .login-container {
                 padding: 40px 25px;
@@ -420,11 +339,10 @@
     </style>
 </head>
 <body>
-    <!-- Parallax Background -->
+    <!-- Blue & White Parallax Background -->
     <div class="parallax-container">
         <div class="parallax-layer layer-1"></div>
         <div class="parallax-layer layer-2"></div>
-        <div class="parallax-layer layer-3"></div>
         <div class="particles">
             <div class="particle"></div>
             <div class="particle"></div>
@@ -521,13 +439,11 @@
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
             
-            // Simulate network delay
             setTimeout(() => {
                 const users = JSON.parse(localStorage.getItem('users'));
                 const user = users.find(u => u.email === email && u.password === password);
                 
                 if (user) {
-                    // Store session
                     sessionStorage.setItem('currentUser', JSON.stringify({
                         id: user.id,
                         username: user.username,
@@ -561,7 +477,6 @@
             }
         }
 
-        // Check if already logged in
         if (sessionStorage.getItem('currentUser')) {
             window.location.href = 'dashboard.html';
         }
